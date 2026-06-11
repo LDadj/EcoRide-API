@@ -6,11 +6,15 @@ Illustration de la requête `POST/api/v1/route`.
 
 sequenceDiagram
     participant Client
-    participant API
-    participant RouteController
+    participant EcoRide API
+    participant API météo
+    participant API de transport
 
-    Client->>API: POST /api/v1/route
-    API->>RouteController: create_route()
-    RouteController-->>API: Route created
-    API-->>Client: 201 Created
+    Client->>EcoRide API: POST /api/v1/route
+    EcoRide API->>EcoRide API: Controle d'accès (API Key) 
+    EcoRide API->>API météo: Request - données météo
+    API météo-->>EcoRide API: Response - Conditions climatiques
+    EcoRide API->>API de transport: Request - options de transport
+    API de transport-->>EcoRide API: Response - Options de transport
+    EcoRide API-->>Client: 201 Created
 ```

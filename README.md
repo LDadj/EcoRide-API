@@ -55,17 +55,39 @@ curl -X POST "http://localhost:8000/api/v1/route" \
   -H "api_key: secret_token_3a" \
   -d '{"user_id": "u2", "city": "Lyon", "destination": "Part-Dieu"}'
 ```
+### Endpoints
+#### GET /health
+- Description : Vérifie la santé de l'API.
+- Réponse : 200 OK
+#### POST /api/v1/route
+- Description : Obtenir des recommandations de transport écologiques.
+- Paramètres :
+  - `user_id` (string, requis) : Identifiant de l'utilisateur.
+  - `city` (string, requis) : Ville de départ (ex: Paris, Lyon).
+  - `destination` (string, requis) : Destination finale.
+- Réponse : 200 OK avec les recommandations de transport.
+
+
+**Codes de retour :**
+
+| Code| Signification |
+|-----|--------------------------------------|
+| 200 | Recommandation retournée avec succès |
+| 401 | Clé API invalide ou manquante |
+| 503 | Service météo externe indisponible |
+
 
 ### Structure du projet
+
 ```
 EcoRide-API/
 ├── main.py
 ├── requirements.txt
 ├── README.md
 ├── CHANGELOG.md
-├── docs/
-│   ├── api-reference.md
-│   └── sequence-diagram.md 
+└── docs/
+     ├── api-reference.md
+     └── sequence-diagram.md 
 ```
 
 ### Voir les changelog
