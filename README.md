@@ -1,6 +1,6 @@
-## EcoRide API | Version 1.0
+## EcoRide API | Version 2.1.0
 
-Bienvenue dans la documentation de l'API EcoRide, votre solution de mobilité durable. Cette API vous permet d'accéder à une variété de fonctionnalités pour gérer les trajets, les utilisateurs, les véhicules et surement d'autre chose.
+Bienvenue dans la documentation de l'API EcoRide, votre solution de mobilité durable. Cette API vous permet d'obtenir des recommandations de transport écologiques basées sur votre localisation et votre destination. Que vous soyez à Paris, Lyon ou dans une autre ville, EcoRide vous guide vers les options de transport les plus vertes disponibles.
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571.svg?style=for-the-badge&logo=fastapi)
@@ -11,10 +11,10 @@ Bienvenue dans la documentation de l'API EcoRide, votre solution de mobilité du
 
 
 ### Pré-requis
-```python
-pip
-Python 3.8 ou supérieur
-```
+
+- pip
+- Python **3.10+**
+
 
 ### Installation
 1. Clonez le dépôt :
@@ -35,11 +35,41 @@ pip install -r requirements.txt
 ### Lancement de l'API
 ```bash
 python main.py
+
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 L'application sera accessible à l'adresse suivante : `http://localhost:8000`
 
-### Changelog
+### Exemple d'utilisation de l'API
+```bash
+# Requêtage pour Paris
+curl -X POST "http://localhost:8000/api/v1/route" \
+  -H "Content-Type: application/json" \
+  -H "api_key: secret_token_3a" \
+  -d '{"user_id": "u1", "city": "Paris", "destination": "Montmartre"}'
+
+# Requêtage pour Lyon
+curl -X POST "http://localhost:8000/api/v1/route" \
+  -H "Content-Type: application/json" \
+  -H "api_key: secret_token_3a" \
+  -d '{"user_id": "u2", "city": "Lyon", "destination": "Part-Dieu"}'
+```
+
+### Structure du projet
+```
+EcoRide-API/
+├── main.py
+├── requirements.txt
+├── README.md
+├── CHANGELOG.md
+├── docs/
+│   ├── api-reference.md
+│   └── sequence-diagram.md 
+```
+
+### Voir les changelog
+Voir [CHANGELOG.md](CHANGELOG.md) pour l'historique complet des versions.
 
 ### Author
-Moi
+© Foidjou DAUMARD
